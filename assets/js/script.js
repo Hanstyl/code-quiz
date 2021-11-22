@@ -1,109 +1,170 @@
-function buildQuiz() {
-    // Variable to store the HTML output
-    const output = [];
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const questionContainerElement = document.getElementById('quiz-body');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('option-buttons');
 
-    //For each question
-    myQuestions.forEach(
-        (currentQuestion, questionNumber) => {
+let shuffledQuestions, currentQuestionsIndex;
+let timer = document.getElementById('timer');
 
-            // Variable to store the list of possible answers
-            const answers = [];
+startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', startTimer);
 
-            // And for each available answer...
-            for (letter in currentQuestion.answers) {
+nextButton.addEventListener('click', () => {
+    currentQuestionsIndex++
+    setNextQuestion()
+})
 
-                //...add an HTML radio button
-                answers.push(
-                    `<label>
-                        <input type="radio" name="question${questionNumber}" value="${letter}">
-                        ${letter} :
-                        ${currentQuestion.answers[letter]}
-                    </label>`
-                );
-            }
 
-            // add this question and its answers to the output
-            output.push(
-                `<div class="question"> ${currentQuestion.question} </div>
-                 <div class="answers"> ${answers.join('')} </div>`
-            );
+
+/**/
+function startGame() {
+    // hides the start button when function runs... runs when start is clicked
+    startButton.classList.add('invisible');
+
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+
+    currentQuestionsIndex = 0;
+
+    // reveals the preset hidden question container
+    questionContainerElement.classList.remove('invisible');
+
+    setNextQuestion();
+
+}
+
+function startTimer() {
+    let timer = 30;
+    setInterval(function() {
+        timer--;
+        if (timer >= 0) {
+            span = document.getElementById('timer');
+            span.innerHTML = timer;
         }
-    );
+        if (timer === 0) {
+            alert('Out of time!');
+            clearInterval(timer);
+        }
+    }, 1000)
+}
 
-    // Combine output list into one string of html and put it on the page
-    quizContainer.innerHTML = output.join('');
-};
+
+/**/
+function setNextQuestion() {
+    resetState()
+
+    showQuestion(shuffledQuestions[currentQuestionsIndex])
+}
 
 
-const quizContainer = document.getElementById("quiz-game");
-const startButton = document.getElementById("start-button");
-let question = '';
+/**/
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
 
-const myQuestions = [
+/**/
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add('invisible')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+            (answerButtonsElement.firstChild)
+    }
+}
+
+
+/**/
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (shuffledQuestions.length > currentQuestionsIndex + 1) {
+        nextButton.classList.remove('invisible')
+    } else {
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('invisible')
+    }
+}
+
+
+/**/
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+
+
+/**/
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
+
+
+
+/**/
+const questions = [
     {
-        Question: "Which of these is a JS comment?",
-        answers: {
-            a: "//",
-            b: "<!-->",
-            c: "/**/"
-        },
-        correctAnswer: "a"
+        question: 'JavaScript and Java are the same thing.',
+        answers: [
+            { text: 'TRUE', correct: true },
+            { text: 'FALSE', correct: false }
+        ]
     },
     {
-        Question: "Which of these is a JS comment?",
-        answers: {
-            a: "//",
-            b: "<!-->",
-            c: "/**/"
-        },
-        correctAnswer: "a"
+        question: 'Inside which HTML element do we put the JavaScript??',
+        answers: [
+            { text: '<script>', correct: true },
+            { text: '<javascript>', correct: false },
+            { text: '<scripting>', correct: false },
+            { text: '<js>', correct: false }
+        ]
     },
     {
-        Question: "Which of these is a JS comment?",
-        answers: {
-            a: "//",
-            b: "<!-->",
-            c: "/**/"
-        },
-        correctAnswer: "a"
+        question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
+        answers: [
+            { text: '<script src="xxx.js">', correct: true },
+            { text: '<script href="xxx.js">', correct: false },
+            { text: '<script name="xxx.js">', correct: false }
+        ]
     },
     {
-        Question: "Which of these is a JS comment?",
-        answers: {
-            a: "//",
-            b: "<!-->",
-            c: "/**/"
-        },
-        correctAnswer: "a"
+        question: 'How do you write "Hello World" in an alert box?',
+        answers: [
+            { text: 'alert("Hello World");', correct: true },
+            { text: 'msg("Hello World");', correct: false },
+            { text: 'alertBox("Hello world");', correct: false },
+            { text: 'msgBox("Hello World");', correct: false }
+        ]
     },
     {
-        Question: "Which of these is a JS comment?",
-        answers: {
-            a: "//",
-            b: "<!-->",
-            c: "/**/"
-        },
-        correctAnswer: "a"
-    },
-];
+        question: 'How do you call a function named "myFunction"?',
+        answers: [
+            { text: 'myFunction()', correct: true },
+            { text: 'call function myFunction()', correct: false },
+            { text: 'call myFunction()', correct: false }
+        ]
+    }
+]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-buildQuiz();
-
-// Add event listeners
-startButton.addEventListener('click', showResults);

@@ -4,43 +4,119 @@
     padding: 0;
 }
 
+:root {
+    --wrong-color: rgb(255, 0, 0);
+    --right-color: rgb(9, 146, 9);
+}
+
+body {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body.correct {
+    color: var(--right-color);
+    background-color: var(--right-color);
+}
+
+body.wrong {
+    color: var(--wrong-color);
+    background-color: var(--wrong-color);
+}
+
 header {
     text-align: center;
-    margin: 20px;
+    margin: 0 0 20px 0;
     border-bottom: 1px black solid;
-}
-
-main {
-    text-align: center;
-    margin: 40px;
-    font-family:Arial, Helvetica, sans-serif;
-    
-}
-
-main p {
-    font-size: 20px;
-}
-
-#start-button {
+    width: 100vw;
+    height: auto;
+    color: black;
     background-color: white;
-    font-size: 34px;
-    border: solid 2px green;
-    border-radius: 50%;
-    padding: 10px;
 }
 
-#start-button:hover {
-    background-color: yellowgreen;
+header h1 {
+    margin: 30px 0 30px 0;
+}
+
+.main {
+    width: 800px;
+    height: 60vh;
+    max-height: 80%;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
 }
 
 footer {
     width: 100%;
     padding: 40px 35px;
-    background-color: green;
+    background-color: white;
     bottom: 0;
-    height: 40px;
+    height: 80px;
     background-position: bottom;
-    color: white;
+    color: black;
     text-align: center;
     position: fixed;
+}
+
+
+.answer-section {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.btn:hover {
+    border: 2px solid black;
+    background-color: snow;
+}
+
+.btn.correct {
+    color: var(--right-color);
+}
+
+.btn.wrong {
+    color: var(--wrong-color);
+}
+
+.start-btn, 
+.next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 20px;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invisible {
+    display: none;
+}
+
+#question {
+    text-align: center;
+    font-size: 23px;
+    margin: 20px;
+    height: 40px;
+}
+
+#option-buttons {
+    margin: 80px;
+    height: 0px;
 }

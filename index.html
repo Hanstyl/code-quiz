@@ -5,46 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Javascript Quiz</title>
 </head>
 
-
 <body>
-    <header class="grid-x">
-
-        <div class="cell">
+    <header>
+        <div>
             <h1> Javascript Fundamentals Quiz </h1>
         </div>
 
-        <div class="cell">
-            <h2>Time Left:</h2>
+        <div>
+            <h2>Time Left: <span id="timer">30</span> </h2>
         </div>
     </header>
 
-    <!-- Main Quiz Section-->
-    <main>
+
+    <main class="main">
         
-        <div id="quiz-game" class="cell">
-            <p>Do you wish to start the quiz?</p>
-            <button id="start-button" class="large">Start</button>
+        <div id="quiz-body" class="invisible">
+            
+            <div id="question"></div>
+            
+            <div id="option-buttons" class="answer-section">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
         </div>
 
+
+        <div class="nav-buttons">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn invisible">Next</button>
+        </div>
     </main>
 
     <footer>
-        <p>Hight Scores</p>
+        <div>
+            <p>high Scores</p>
+        </div>
     </footer>
 
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
-        crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
-
 </body>
 
 </html>
