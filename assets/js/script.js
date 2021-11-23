@@ -18,6 +18,54 @@ nextButton.addEventListener('click', () => {
 
 
 /**/
+const questions = [
+    {
+        question: 'JavaScript and Java are the same thing.',
+        answers: [
+            { text: 'TRUE', correct: false },
+            { text: 'FALSE', correct: true }
+        ]
+    },
+    {
+        question: 'Inside which HTML element do we put the JavaScript??',
+        answers: [
+            { text: '<javascript>', correct: false },
+            { text: '<scripting>', correct: false },
+            { text: '<script>', correct: true },
+            { text: '<js>', correct: false }
+        ]
+    },
+    {
+        question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
+        answers: [
+            { text: '<script href="xxx.js">', correct: false },
+            { text: '<script src="xxx.js">', correct: true },
+            { text: '<script name="xxx.js">', correct: false }
+        ]
+    },
+    {
+        question: 'How do you write "Hello World" in an alert box?',
+        answers: [
+            { text: 'msg("Hello World");', correct: false },
+            { text: 'alertBox("Hello world");', correct: false },
+            { text: 'msgBox("Hello World");', correct: false },
+            { text: 'alert("Hello World");', correct: true }
+        ]
+    },
+    {
+        question: 'How do you call a function named "myFunction"?',
+        answers: [
+            { text: 'myFunction()', correct: true },
+            { text: 'call function myFunction()', correct: false },
+            { text: 'call myFunction()', correct: false }
+        ]
+    }
+]
+
+
+
+
+/**/
 function startGame() {
     // hides the start button when function runs... runs when start is clicked
     startButton.classList.add('invisible');
@@ -33,9 +81,11 @@ function startGame() {
 
 }
 
+
+/**/
 function startTimer() {
     let timer = 30;
-    setInterval(function() {
+    setInterval(function () {
         timer--;
         if (timer >= 0) {
             span = document.getElementById('timer');
@@ -49,12 +99,14 @@ function startTimer() {
 }
 
 
+
 /**/
 function setNextQuestion() {
     resetState()
 
     showQuestion(shuffledQuestions[currentQuestionsIndex])
 }
+
 
 
 /**/
@@ -72,6 +124,9 @@ function showQuestion(question) {
     })
 }
 
+
+
+
 /**/
 function resetState() {
     clearStatusClass(document.body)
@@ -81,6 +136,7 @@ function resetState() {
             (answerButtonsElement.firstChild)
     }
 }
+
 
 
 /**/
@@ -101,6 +157,9 @@ function selectAnswer(e) {
 }
 
 
+
+
+
 /**/
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -114,6 +173,8 @@ function setStatusClass(element, correct) {
 
 
 
+
+
 /**/
 function clearStatusClass(element) {
     element.classList.remove('correct')
@@ -122,49 +183,9 @@ function clearStatusClass(element) {
 
 
 
-/**/
-const questions = [
-    {
-        question: 'JavaScript and Java are the same thing.',
-        answers: [
-            { text: 'TRUE', correct: true },
-            { text: 'FALSE', correct: false }
-        ]
-    },
-    {
-        question: 'Inside which HTML element do we put the JavaScript??',
-        answers: [
-            { text: '<script>', correct: true },
-            { text: '<javascript>', correct: false },
-            { text: '<scripting>', correct: false },
-            { text: '<js>', correct: false }
-        ]
-    },
-    {
-        question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-        answers: [
-            { text: '<script src="xxx.js">', correct: true },
-            { text: '<script href="xxx.js">', correct: false },
-            { text: '<script name="xxx.js">', correct: false }
-        ]
-    },
-    {
-        question: 'How do you write "Hello World" in an alert box?',
-        answers: [
-            { text: 'alert("Hello World");', correct: true },
-            { text: 'msg("Hello World");', correct: false },
-            { text: 'alertBox("Hello world");', correct: false },
-            { text: 'msgBox("Hello World");', correct: false }
-        ]
-    },
-    {
-        question: 'How do you call a function named "myFunction"?',
-        answers: [
-            { text: 'myFunction()', correct: true },
-            { text: 'call function myFunction()', correct: false },
-            { text: 'call myFunction()', correct: false }
-        ]
-    }
-]
+
+
+
+
 
 
