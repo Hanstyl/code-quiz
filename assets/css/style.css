@@ -66,7 +66,7 @@ footer {
 .answer-section {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    gap: 10px;
+    gap: 30px;
     margin: 20px 0;
 }
 
@@ -74,7 +74,7 @@ footer {
     color: black;
     border: 1px solid black;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 15px 10px;
     outline: none;
 }
 
@@ -85,10 +85,12 @@ footer {
 
 .btn.correct {
     color: var(--right-color);
+    box-shadow: 0 0 5px 5px green;
 }
 
 .btn.wrong {
     color: var(--wrong-color);
+    box-shadow: 0 0 5px 5px red;
 }
 
 .start-btn, 
@@ -96,7 +98,7 @@ footer {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
-    margin: 20px;
+    margin: 100px;
 }
 
 .nav-buttons {
@@ -120,3 +122,6 @@ footer {
     margin: 80px;
     height: 0px;
 }
+
+
+

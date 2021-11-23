@@ -1,18 +1,25 @@
 const startButton = document.getElementById('start-btn');
+const goBackButton = document.getElementById('go-back-btn');
+const scoreCard = document.getElementById('score-card');
 const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('quiz-body');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('option-buttons');
+const endButton = document.getElementsByClassName('end-btn'); //
 
 let shuffledQuestions, currentQuestionsIndex;
 let timer = document.getElementById('timer');
 
-startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', startGame, startTimer);
 startButton.addEventListener('click', startTimer);
 
 nextButton.addEventListener('click', () => {
     currentQuestionsIndex++
     setNextQuestion()
+})
+
+startButton.addEventListener('click', () => {
+    goBackButton.classList.add('invisible');
 })
 
 
@@ -59,7 +66,7 @@ const questions = [
             { text: 'call function myFunction()', correct: false },
             { text: 'call myFunction()', correct: false }
         ]
-    }
+    },
 ]
 
 
@@ -78,24 +85,28 @@ function startGame() {
     questionContainerElement.classList.remove('invisible');
 
     setNextQuestion();
-
 }
 
 
 /**/
 function startTimer() {
     let timer = 30;
-    setInterval(function () {
+    interval = setInterval(function () {
         timer--;
         if (timer >= 0) {
             span = document.getElementById('timer');
             span.innerHTML = timer;
         }
         if (timer === 0) {
-            alert('Out of time!');
-            clearInterval(timer);
+            clearInterval(interval);
+            window.location.href = './game-over.html';
         }
     }, 1000)
+}
+
+
+function stopTimer() {
+
 }
 
 
@@ -151,13 +162,16 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionsIndex + 1) {
         nextButton.classList.remove('invisible')
     } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('invisible')
+        (shuffledQuestions.length == currentQuestionsIndex - 1); {
+            alert('Congratulations!')
+            window.location.href = './highscore.html';
+        }
     }
 }
 
 
-
+//startButton.innerText = 'Restart'
+//startButton.classList.remove('invisible')
 
 
 /**/
@@ -184,6 +198,7 @@ function clearStatusClass(element) {
 
 
 
+    
 
 
 

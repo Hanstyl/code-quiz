@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    margin: 0 0 20px 0;
+    border-bottom: 1px black solid;
+    width: 100vw;
+    height: auto;
+    color: black;
+    background-color: snow;
+}
+
+.btn {
+    color: green;
+    border-radius: 5px;
+    padding: 15px 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+ text-align: center;
+ font-family: fantasy;
+ color: red;
+ font-size: 30px;
+}
+
+.game-over-btn {
+    justify-content: center;
+}
+
+.game-over-head {
+    font-size: 100px;
+    color: red;
+    font-family: fantasy;
+}
